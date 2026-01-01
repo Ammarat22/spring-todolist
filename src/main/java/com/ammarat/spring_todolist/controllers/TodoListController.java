@@ -17,8 +17,6 @@ public class TodoListController {
     public TodoListController(TodoListService todoListService) {
         this.todoListService = todoListService;
     }
-
-    // GET http://localhost:8080/api/todolists
     @GetMapping
     public List<TodoList> getAllTodoLists() {
         return todoListService.getAllTodoList();
