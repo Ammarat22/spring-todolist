@@ -2,9 +2,8 @@ package com.ammarat.spring_todolist.controllers;
 
 import com.ammarat.spring_todolist.entities.TodoList;
 import com.ammarat.spring_todolist.services.TodoListService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,8 +16,14 @@ public class TodoListController {
     public TodoListController(TodoListService todoListService) {
         this.todoListService = todoListService;
     }
+
     @GetMapping
     public List<TodoList> getAllTodoLists() {
         return todoListService.getAllTodoList();
+    }
+
+   @PostMapping
+   public TodoList createTodoList(@RequestBody TodoList todoList) {
+        return todoListService.createTodoList(todoList);
     }
 }

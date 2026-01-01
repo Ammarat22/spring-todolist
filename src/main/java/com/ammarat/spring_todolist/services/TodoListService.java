@@ -11,7 +11,8 @@ import java.util.List;
 
 public class TodoListService implements TodoListServiceImpl{
 
-private TodoListRepository todoListRepository;
+private final TodoListRepository todoListRepository;
+
     public TodoListService (TodoListRepository todoListRepository) {
     this.todoListRepository = todoListRepository;
 }
@@ -19,4 +20,8 @@ private TodoListRepository todoListRepository;
     public List<TodoList> getAllTodoList() {
         return todoListRepository.findAll();
     }
+@Override
+public TodoList createTodoList(TodoList todoList) {
+        return todoListRepository.save(todoList);
+}
 }
