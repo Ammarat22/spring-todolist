@@ -1,10 +1,8 @@
 package com.ammarat.spring_todolist.controllers;
 
 import com.ammarat.spring_todolist.dto.TodoListDto;
-import com.ammarat.spring_todolist.entities.TodoList;
+import com.ammarat.spring_todolist.dto.TodoListReqDto;
 import com.ammarat.spring_todolist.services.TodoListService;
-import org.springframework.boot.jdbc.metadata.TomcatDataSourcePoolMetadata;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,18 +21,24 @@ import java.util.List;
         return todoListService.getAllTodoLists(order);
     }
 
-   @PostMapping
-   public TodoListDto createTodoList(@RequestBody TodoListDto todoListDto) {
-        return todoListService.createTodoList(todoListDto);
+    @PostMapping
+    public TodoListDto createTodoList(
+            @RequestBody TodoListReqDto todoListReqDto) {
+        return todoListService.createTodoList(todoListReqDto);
     }
 
     @PutMapping("/{id}")
-    public TodoListDto updateTodoList(@PathVariable Integer id, @RequestBody TodoListDto todoListDto) {
-        return todoListService.updateTodoList(id, todoListDto);
+    public TodoListDto updateTodoList(@PathVariable Integer id, @RequestBody TodoListReqDto todoListReqDto) {
+        return todoListService.updateTodoList(id, todoListReqDto);
     }
 
     @DeleteMapping("/{id}")
     public void deleteTodoList(@PathVariable Integer id) {
         todoListService.deleteTodoList(id);
+    }
+
+    @GetMapping("/{id}")
+    public TodoListDto getTodoListById(@PathVariable Integer id) {
+        return todoListService.getTodoListById(id);
     }
 }
