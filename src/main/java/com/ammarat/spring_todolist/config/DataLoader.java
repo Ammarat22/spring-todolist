@@ -15,7 +15,7 @@ public class DataLoader implements CommandLineRunner {
     }
     @Override
     public void run(String... args) {
-        todoListRepository.save(new TodoList("test 1", "Salut"));
-        todoListRepository.save(new TodoList("test 2", "Au revoir"));
+        todoListRepository.save(new TodoList("Faire les courses", "Acheter du savon"));
+        todoListRepository.save(new TodoList("Réunion avec l'equipe", "Finir les taches à faire avant"));
     }
 }

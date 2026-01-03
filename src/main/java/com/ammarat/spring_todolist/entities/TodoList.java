@@ -1,15 +1,11 @@
 package com.ammarat.spring_todolist.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-import java.time.LocalDateTime;
+
+import java.time.Instant;
 
 @Entity
 @Data
@@ -22,14 +18,29 @@ public class TodoList {
     private String title;
     private String description;
 
-    @CreationTimestamp
-    private LocalDateTime createdAt;
-    @UpdateTimestamp
-    private LocalDateTime updatedAt;
+    @Column(nullable = false, updatable = false)
+    private Instant createdAt;
+    @Column(nullable = false)
+    private Instant updatedAt;
 
     // Add a business constructor with two parameters (title and description)
     public TodoList(String title, String description) {
         this.title = title;
         this.description = description;
     }
+    // Avant insertion
+    @PrePersist
+    public void onCreate() {
+        Instant now = Instant.now();
+        this.createdAt = now;
+        this.updatedAt =now;
+    }
+
+    // Avant mise à jour
+    @PreUpdate
+    public void onUpdate() {
+        this.updatedAt =Instant.now();
+    }
 }
+
+
