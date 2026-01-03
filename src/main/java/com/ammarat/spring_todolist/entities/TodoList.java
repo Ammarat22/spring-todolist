@@ -21,9 +21,15 @@ public class TodoList {
     private Integer id;
     private String title;
     private String description;
+
     @CreationTimestamp
     private LocalDateTime createdAt;
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
+    // Add a business constructor with two parameters (title and description)
+    public TodoList(String title, String description) {
+        this.title = title;
+        this.description = description;
+    }
 }
