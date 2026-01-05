@@ -14,6 +14,8 @@ public class TodoListDtoMap {
         dto.setId(todo.getId());
         dto.setTitle(todo.getTitle());
         dto.setDescription(todo.getDescription());
+        dto.setCreatedAt(todo.getCreatedAt());
+        dto.setUpdatedAt(todo.getUpdatedAt());
         return dto;
     }
 }
