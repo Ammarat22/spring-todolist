@@ -3,6 +3,7 @@ package com.ammarat.spring_todolist.controllers;
 import com.ammarat.spring_todolist.dto.TodoListDto;
 import com.ammarat.spring_todolist.dto.TodoListReqDto;
 import com.ammarat.spring_todolist.services.TodoListService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,18 +18,21 @@ import java.util.List;
     }
 
     @GetMapping
-    public List<TodoListDto> getAllTodoLists(@RequestParam(value = "order", required = false) String order) {
+    public List<TodoListDto> getAllTodoLists
+            (@RequestParam(value = "order", required = false) String order) {
         return todoListService.getAllTodoLists(order);
     }
 
     @PostMapping
     public TodoListDto createTodoList(
-            @RequestBody TodoListReqDto todoListReqDto) {
+            @Valid @RequestBody TodoListReqDto todoListReqDto) {
         return todoListService.createTodoList(todoListReqDto);
     }
 
     @PutMapping("/{id}")
-    public TodoListDto updateTodoList(@PathVariable Integer id, @RequestBody TodoListReqDto todoListReqDto) {
+    public TodoListDto updateTodoList
+            (@PathVariable Integer id,
+             @Valid @RequestBody TodoListReqDto todoListReqDto) {
         return todoListService.updateTodoList(id, todoListReqDto);
     }
 
